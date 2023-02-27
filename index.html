@@ -11,12 +11,27 @@
         const Message = (text, user) => {
             const element = document.createElement('div')
             const user_element = document.createElement('span')
-            const text_element = document.createElement('span')
 
             element.append(user_element)
-            element.append(text_element)
             user_element.append(user)
-            text_element.append(text)
+
+            if (text.endsWith('.jpg') || text.endsWith('.png') || text.endsWith('.gif')) {
+                const image = document.createElement('img')
+                image.src = text
+                image.style.width = '100%'
+                image.style.maxWidth = '500px'
+                // error para cargar imagen
+                image.onerror = () => {
+                    image.src = 'https://w7.pngwing.com/pngs/285/84/png-transparent-computer-icons-error-super-8-film-angle-triangle-computer-icons.png'
+                }
+                element.append(image)
+            }else {
+                const text_element = document.createElement('span')
+                element.append(text_element)
+                text_element.append(text)
+                text_element.style.wordBreak = 'break-all'  // Ajustar textos largos a la pantalla
+
+            }
 
             element.style.display = 'flex'
             element.style.padding = '5px'
@@ -24,7 +39,6 @@
             element.style.marginRight = '10px'
             element.style.flexDirection = 'column'
             user_element.style.fontWeight = 'bold'
-            text_element.style.wordBreak = 'break-all'  // Ajustar textos largos a la pantalla
 
             if (user === 'MarkAlbrand56') {  // Usuario de este chat
                 element.style.alignItems = 'flex-end'
