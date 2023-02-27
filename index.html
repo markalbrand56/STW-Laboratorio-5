@@ -33,7 +33,7 @@
                 video.style.maxWidth = '500px'
                 video.controls = true
                 element.append(video)
-            }else if (text.startsWith('http') || text.startsWith('www')) {
+            }else if (text.startsWith('http') || text.startsWith('www') || text.startsWith('https')) {
                 const link = document.createElement('a')
                 link.href = text
                 link.append(text)
