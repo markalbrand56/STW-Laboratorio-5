@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Chat</title>
@@ -9,8 +9,30 @@
         const messages_display = document.createElement('ul')
 
         const Message = (text, user) => {
-            const element = document.createElement('li')
-            element.append(`${user}: ${text}`)
+            const element = document.createElement('div')
+            const user_element = document.createElement('span')
+            const text_element = document.createElement('span')
+
+            element.append(user_element)
+            element.append(text_element)
+            user_element.append(user)
+            text_element.append(text)
+
+            element.style.display = 'flex'
+            element.style.padding = '5px'
+            //element.style.marginLeft = '10px'
+            element.style.marginRight = '10px'
+            element.style.flexDirection = 'column'
+            user_element.style.fontWeight = 'bold'
+            // si el texto es demasiado largo, ajustar a la pantalla
+            text_element.style.wordBreak = 'break-all'
+
+            if (user === 'MarkAlbrand56') {
+                element.style.alignItems = 'flex-end'
+            } else {
+                element.style.alignItems = 'flex-start'
+            }
+
             return element
         }
         const getMessages = async () => {
