@@ -24,10 +24,9 @@
             element.style.marginRight = '10px'
             element.style.flexDirection = 'column'
             user_element.style.fontWeight = 'bold'
-            // si el texto es demasiado largo, ajustar a la pantalla
-            text_element.style.wordBreak = 'break-all'
+            text_element.style.wordBreak = 'break-all'  // Ajustar textos largos a la pantalla
 
-            if (user === 'MarkAlbrand56') {
+            if (user === 'MarkAlbrand56') {  // Usuario de este chat
                 element.style.alignItems = 'flex-end'
             } else {
                 element.style.alignItems = 'flex-start'
@@ -54,11 +53,9 @@
         form.append(input)
         form.append(button)
 
-        // hacer que el form ocupe todo el ancho de la pantalla
         form.style.width = '100%'
         form.style.display = 'flex'
         form.style.justifyContent = 'center'
-        // hacer que el input ocupe todo el ancho de la pantalla
         input.style.width = '100%'
         input.style.maxWidth = '500px'
         input.style.marginRight = '10px'
