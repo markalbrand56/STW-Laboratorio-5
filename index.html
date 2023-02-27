@@ -26,6 +26,18 @@
                     image.src = 'https://w7.pngwing.com/pngs/285/84/png-transparent-computer-icons-error-super-8-film-angle-triangle-computer-icons.png'
                 }
                 element.append(image)
+            }else if (text.endsWith('.mp4')) {
+                const video = document.createElement('video')
+                video.src = text
+                video.style.width = '100%'
+                video.style.maxWidth = '500px'
+                video.controls = true
+                element.append(video)
+            }else if (text.startsWith('http') || text.startsWith('www')) {
+                const link = document.createElement('a')
+                link.href = text
+                link.append(text)
+                element.append(link)
             }else {
                 const text_element = document.createElement('span')
                 element.append(text_element)
