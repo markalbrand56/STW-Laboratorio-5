@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+<body>
+    <script type="application/javascript">
+        const messages_display = document.createElement('ul')
+
+        const Message = (text, user) => {
+            const element = document.createElement('li')
+            element.append(`${user}: ${text}`)
+            return element
+        }
+        const getMessages = async () => {
+            const response = await fetch('http://uvgenios.online/api/messages')
+            const messages = await response.json()
+            console.log("a")
+
+            const list_messages = messages.map((message) => {
+                return Message(message.text, message.user)
+            })
+            list_messages.forEach((li) => messages_display.append(li))
+        }
+        getMessages()
+        const form = document.createElement('form')
+        const input = document.createElement('input')
+        const button = document.createElement('button')
+
+        button.append('SEND')
+        form.append(input)
+        form.append(button)
+
+        // hacer que el form ocupe todo el ancho de la pantalla
+        form.style.width = '100%'
+        form.style.display = 'flex'
+        form.style.justifyContent = 'center'
+        // hacer que el input ocupe todo el ancho de la pantalla
+        input.style.width = '100%'
+        input.style.maxWidth = '500px'
+        input.style.marginRight = '10px'
+        input.style.padding = '10px'
+        input.style.fontSize = '20px'
+
+        document.body.append(messages_display)
+        document.body.append(form)
+    </script>
+</body>
+</html>
