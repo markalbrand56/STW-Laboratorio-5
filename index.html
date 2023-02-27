@@ -22,6 +22,7 @@
                 image.style.maxWidth = '500px'
                 // error para cargar imagen
                 image.onerror = () => {
+                    console.log(text)
                     image.src = 'https://w7.pngwing.com/pngs/285/84/png-transparent-computer-icons-error-super-8-film-angle-triangle-computer-icons.png'
                 }
                 element.append(image)
