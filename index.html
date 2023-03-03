@@ -6,6 +6,7 @@
 </head>
 <body>
     <script type="application/javascript">
+        const usr = 'MarkAlbrand56'  // Usuario de este chat
         const messages_list = document.createElement('ul')
 
         const Message = (text, user) => {
@@ -18,8 +19,7 @@
             if (text.endsWith('.jpg') || text.endsWith('.png') || text.endsWith('.gif')) {
                 const image = document.createElement('img')
                 image.src = text
-                image.style.width = '100%'
-                image.style.maxWidth = '500px'
+                image.style.maxHeight = '360px'
                 // error para cargar imagen
                 image.onerror = () => {
                     console.log(text)
@@ -34,32 +34,58 @@
                 video.controls = true
                 element.append(video)
             }else if (text.startsWith('http') || text.startsWith('www') || text.startsWith('https')) {
-                const link = document.createElement('iframe')
-                link.setAttribute('src', text)
-                link.style.width = '100%'
-                link.style.maxWidth = '640px'
-                link.style.height = '360px'
-                element.append(link)
+                // con opengraph para mostrar información de la página
+                iframe = document.createElement('iframe')
+                button_open = document.createElement('button')
+
+                button_open.append('Abrir enlace')
+                iframe.src = text
+
+                iframe.style.border = '1px solid #f2f0f2'
+                iframe.style.boxShadow = 'none'
+                iframe.style.width = '50%'
+                iframe.style.maxWidth = '50%'
+                iframe.style.height = '100%'
+                iframe.style.maxHeight = '100%'
+                iframe.style.pointerEvents = 'none'
+
+                button_open.style.width = '50%'
+                button_open.style.maxWidth = '50%'
+                button_open.style.backgroundColor = '#f2f0f2'
+                button_open.style.border = 'none'
+                button_open.style.cursor = 'pointer'
+
+                iframe.scrolling = 'no'
+
+                iframe.addEventListener('click', () => {
+                    window.open(text, '_blank')
+                })
+                button_open.addEventListener('click', () => {
+                    window.open(text, '_blank')
+                })
+
+
+                element.append(iframe)
+                element.append(button_open)
             }else {
                 const text_element = document.createElement('span')
                 element.append(text_element)
                 text_element.append(text)
                 text_element.style.wordBreak = 'break-word'  // Ajustar textos largos a la pantalla
+                element.style.backgroundColor = '#f1f0f2'
             }
 
             element.style.display = 'flex'
             element.style.padding = '5px'
-            //element.style.marginLeft = '10px'
             element.style.marginRight = '10px'
             element.style.flexDirection = 'column'
             user_element.style.fontWeight = 'bold'
 
-            if (user === 'MarkAlbrand56') {  // Usuario de este chat
+            if (user === usr) {  // Usuario de este chat
                 element.style.alignItems = 'flex-end'
                 element.style.backgroundColor = '#dcf8c6'
             } else {
                 element.style.alignItems = 'flex-start'
-                element.style.backgroundColor = '#f1f0f2'
             }
             element.style.marginBottom = '10px'
             element.style.borderRadius = '10px'
@@ -75,7 +101,27 @@
             })
             list_messages.forEach((li) => messages_list.append(li))
         }
+
+        const postMessage = async (text) => {
+            const body = {
+                text,
+                user: usr  // Usuario de este chat
+            }
+            const response = await fetch('http://uvgenios.online/api/messages', {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            return response
+        }
+
+        // ---------------------------------------------------------------------------------------------------- //
+
         getMessages()
+
+        // ---------------------------------------------------------------------------------------------------- //
         const form = document.createElement('form')
         const input = document.createElement('input')
         const button = document.createElement('button')
@@ -95,12 +141,20 @@
         input.style.marginRight = '10px'
         input.style.padding = '10px'
         input.style.fontSize = '20px'
+        input.placeholder = 'Escribe un mensaje'
+        // ajustar al final de la pantalla
+        form.style.position = 'fixed'
+        form.style.bottom = '50px'
 
         // Personalización del chat
         chat_div.style.width = '100%'
         chat_div.style.marginRight = '10px'
+        chat_div.style.backgroundColor = 'white'
+        chat_div.style.borderRadius = '10px'
 
         messages_div.style.width = '99%'
+        chat_div.scroll(0, chat_div.scrollHeight)
+
 
         messages_list.style.overflowY = 'scroll'
         messages_list.style.height = '700px'
@@ -117,13 +171,48 @@
 
         messages_div.append(messages_list)
         chat_div.append(messages_div)
-        chat_div.append(form)
         document.body.append(title)
         document.body.append(chat_div)
+        document.body.append(form)
+        document.body.style.backgroundColor = '#517af5'
 
-        // Scroll al final del div
-        messages_list.scrollTo(0, messages_list.scrollHeight)
+        // ---------------------------------------------------------------------------------------------------- //
+        // Máximo de caracteres
+        input.addEventListener('input', (event) => {
+            if (input.value.length > 140) {
+                input.value = input.value.slice(0, 140)
+                input.style.color = 'red'
+            } else {
+                input.style.color = 'black'
+            }
 
+        })
+
+        // Publicar mensaje
+        button.addEventListener('click', async (event) => {
+            event.preventDefault()
+            const text = input.value
+            input.value = ''
+            const response = await postMessage(text)
+            if (response.status === 200) {
+                const message = Message(text, usr)
+                messages_list.append(message)
+            }
+        })
+        input.addEventListener('keypress', async (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault()
+                const text = input.value
+                input.value = ''
+                const response = await postMessage(text)
+                if (response.status === 200) {
+                    const message = Message(text, usr)
+                    messages_list.append(message)
+                }
+            }
+        })
+
+        //
     </script>
 </body>
 </html>
