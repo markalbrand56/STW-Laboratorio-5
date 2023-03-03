@@ -14,7 +14,7 @@
             const user_element = document.createElement('span')
 
             element.append(user_element)
-            user_element.append(user)
+            user_element.append(user + ': ')
 
             if (text.endsWith('.jpg') || text.endsWith('.png') || text.endsWith('.gif')) {
                 const image = document.createElement('img')
@@ -174,7 +174,7 @@
         document.body.append(title)
         document.body.append(chat_div)
         document.body.append(form)
-        document.body.style.backgroundColor = '#517af5'
+        document.body.style.backgroundColor = '#86b0c2'
 
         // ---------------------------------------------------------------------------------------------------- //
         // Máximo de caracteres
