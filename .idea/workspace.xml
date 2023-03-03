@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad49c94c-ccf8-42a0-9144-83d07c003a12" name="Changes" comment="URLS simples">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +22,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="4cbd8412-8287-405a-8c7f-8bac3a06e8c1" />
+        <option name="url" value="https://github.com/markalbrand56/STW-Laboratorio-5.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -56,6 +70,7 @@
       <workItem from="1677467881674" duration="65000" />
       <workItem from="1677467964644" duration="2783000" />
       <workItem from="1677518052237" duration="3569000" />
+      <workItem from="1677819042404" duration="156000" />
     </task>
     <task id="LOCAL-00001" summary="Base">
       <created>1677471851582</created>

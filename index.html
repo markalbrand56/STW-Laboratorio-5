@@ -6,7 +6,7 @@
 </head>
 <body>
     <script type="application/javascript">
-        const messages_display = document.createElement('ul')
+        const messages_list = document.createElement('ul')
 
         const Message = (text, user) => {
             const element = document.createElement('div')
@@ -69,12 +69,14 @@
             const list_messages = messages.map((message) => {
                 return Message(message.text, message.user)
             })
-            list_messages.forEach((li) => messages_display.append(li))
+            list_messages.forEach((li) => messages_list.append(li))
         }
         getMessages()
         const form = document.createElement('form')
         const input = document.createElement('input')
         const button = document.createElement('button')
+
+        const messages_div = document.createElement('div')
 
         button.append('SEND')
         form.append(input)
@@ -89,7 +91,8 @@
         input.style.padding = '10px'
         input.style.fontSize = '20px'
 
-        document.body.append(messages_display)
+        messages_div.append(messages_list)
+        document.body.append(messages_div)
         document.body.append(form)
     </script>
 </body>
