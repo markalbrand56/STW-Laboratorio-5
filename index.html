@@ -34,16 +34,17 @@
                 video.controls = true
                 element.append(video)
             }else if (text.startsWith('http') || text.startsWith('www') || text.startsWith('https')) {
-                const link = document.createElement('a')
-                link.href = text
-                link.append(text)
+                const link = document.createElement('iframe')
+                link.setAttribute('src', text)
+                link.style.width = '100%'
+                link.style.maxWidth = '640px'
+                link.style.height = '360px'
                 element.append(link)
             }else {
                 const text_element = document.createElement('span')
                 element.append(text_element)
                 text_element.append(text)
-                text_element.style.wordBreak = 'break-all'  // Ajustar textos largos a la pantalla
-
+                text_element.style.wordBreak = 'break-word'  // Ajustar textos largos a la pantalla
             }
 
             element.style.display = 'flex'
@@ -55,10 +56,13 @@
 
             if (user === 'MarkAlbrand56') {  // Usuario de este chat
                 element.style.alignItems = 'flex-end'
+                element.style.backgroundColor = '#dcf8c6'
             } else {
                 element.style.alignItems = 'flex-start'
+                element.style.backgroundColor = '#f1f0f2'
             }
-
+            element.style.marginBottom = '10px'
+            element.style.borderRadius = '10px'
             return element
         }
         const getMessages = async () => {
@@ -81,10 +85,8 @@
 
         const title = document.createElement('h1')
 
-        button.append('SEND')
-        form.append(input)
-        form.append(button)
 
+        // Personalización del forms
         form.style.width = '100%'
         form.style.display = 'flex'
         form.style.justifyContent = 'center'
@@ -94,10 +96,22 @@
         input.style.padding = '10px'
         input.style.fontSize = '20px'
 
+        // Personalización del chat
         chat_div.style.width = '100%'
         chat_div.style.marginRight = '10px'
 
         messages_div.style.width = '99%'
+
+        messages_list.style.overflowY = 'scroll'
+        messages_list.style.height = '700px'
+
+        // Personalización del título
+        title.style.textAlign = 'center'
+
+        // Union de elementos
+        button.append('SEND')
+        form.append(input)
+        form.append(button)
 
         title.append('Chat')
 
@@ -106,6 +120,10 @@
         chat_div.append(form)
         document.body.append(title)
         document.body.append(chat_div)
+
+        // Scroll al final del div
+        messages_list.scrollTo(0, messages_list.scrollHeight)
+
     </script>
 </body>
 </html>
