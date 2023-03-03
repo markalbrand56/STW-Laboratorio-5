@@ -77,6 +77,9 @@
         const button = document.createElement('button')
 
         const messages_div = document.createElement('div')
+        const chat_div = document.createElement('div')
+
+        const title = document.createElement('h1')
 
         button.append('SEND')
         form.append(input)
@@ -91,9 +94,18 @@
         input.style.padding = '10px'
         input.style.fontSize = '20px'
 
+        chat_div.style.width = '100%'
+        chat_div.style.marginRight = '10px'
+
+        messages_div.style.width = '99%'
+
+        title.append('Chat')
+
         messages_div.append(messages_list)
-        document.body.append(messages_div)
-        document.body.append(form)
+        chat_div.append(messages_div)
+        chat_div.append(form)
+        document.body.append(title)
+        document.body.append(chat_div)
     </script>
 </body>
 </html>
