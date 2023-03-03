@@ -6,7 +6,7 @@
 </head>
 <body>
     <script type="application/javascript">
-        const usr = 'MarkAlbrand56'  // Usuario de este chat
+        const usr = 'Prueba'  // Usuario de este chat
         const messages_list = document.createElement('ul')
 
         const Message = (text, user) => {
@@ -142,9 +142,14 @@
         input.style.padding = '10px'
         input.style.fontSize = '20px'
         input.placeholder = 'Escribe un mensaje'
-        // ajustar al final de la pantalla
         form.style.position = 'fixed'
         form.style.bottom = '50px'
+        input.style.borderRadius = '10px'
+        input.style.border = 'none'
+        button.style.borderRadius = '10px'
+        button.style.border = 'none'
+        button.style.cursor = 'pointer'
+        button.style.backgroundColor = 'white'
 
         // Personalización del chat
         chat_div.style.width = '100%'
@@ -192,6 +197,9 @@
         button.addEventListener('click', async (event) => {
             event.preventDefault()
             const text = input.value
+            if (text === '') {
+                return
+            }
             input.value = ''
             const response = await postMessage(text)
             if (response.status === 200) {
