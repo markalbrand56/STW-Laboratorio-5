@@ -162,7 +162,8 @@
 
 
         messages_list.style.overflowY = 'scroll'
-        messages_list.style.height = '700px'
+        // ajustar el tamaño de la lista de mensajes dinamicamente
+        messages_list.style.height = `${window.innerHeight - 200}px`
 
         // Personalización del título
         title.style.textAlign = 'center'
